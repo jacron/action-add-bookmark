@@ -1,0 +1,14 @@
+{
+  "name": "Add bookmark",
+  "description": "Bookmark may be duplicate",
+  "version": "0.1",
+  "permissions": [
+    "bookmarks", "tabs"
+  ],
+  "browser_action": {
+    "default_icon": "images/star blue.png",
+    "default_title": "Add bookmark",
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}

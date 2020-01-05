@@ -1,0 +1,26 @@
+body {
+  margin: 5px 10px 10px;
+  background-color: #777;
+  color: #efefef;
+}
+#new-bookmark {
+  width: 290px;
+  padding: 10px 20px 20px;
+  line-height: 1.7;
+}
+.value {
+  width: 230px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.label {
+  width: 50px;
+  display: inline-block;
+  position: relative;
+  top: -6px;
+}
+.controls {
+  margin-top: 8px;
+}
