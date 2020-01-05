@@ -1,5 +1,3 @@
-#contextmenu
+#add bookmark
 
-open safri with current url
-
-using localhost:3008, avax
+add bookmark to a selected folder - even if it already exists somewhere
