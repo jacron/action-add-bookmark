@@ -1,8 +1,6 @@
-function useTab(tab) {
-    const rowName = document.getElementById('name');
-    const rowUrl = document.getElementById('url');
-    rowUrl.innerText = tab.url;
-    rowName.innerText = tab.title;
+function fillForm(tab) {
+    document.getElementById('name').value = tab.title;
+    document.getElementById('url').value = tab.url;
 }
 
 function initOptions(id) {
@@ -21,8 +19,8 @@ function initCmd(tab) {
     cmdButton.addEventListener('click', () => {
         const choice = choiceFromLocalStorage('-1');
         chrome.bookmarks.create({
-            url: tab.url,
-            title: tab.title,
+            title: document.getElementById('name').value,
+            url: document.getElementById('url').value,
             parentId: choice
         }, () => window.close())
     })
@@ -40,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, function(tabs) {
         // const url = tabs[0].url;
         // console.log(tabs[0]);
-        useTab(tabs[0]);
+        fillForm(tabs[0]);
         initOptions(choice);
         initCmd(tabs[0]);
     });
