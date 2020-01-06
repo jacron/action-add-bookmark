@@ -1,6 +1,7 @@
 function fillForm(tab) {
     document.getElementById('name').value = tab.title;
     document.getElementById('url').value = tab.url;
+    document.getElementById('favicon').src = tab.favIconUrl;
 }
 
 function initOptions(id) {
@@ -36,10 +37,11 @@ document.addEventListener('DOMContentLoaded', function () {
         active: true,
         lastFocusedWindow: true
     }, function(tabs) {
-        // const url = tabs[0].url;
-        // console.log(tabs[0]);
-        fillForm(tabs[0]);
+        const tab = tabs[0];
+        console.log(tab);
+        fillForm(tab);
         initOptions(choice);
-        initCmd(tabs[0]);
+        initCmd(tab);
     });
 });
+//favIconUrl
