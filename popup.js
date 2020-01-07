@@ -25,8 +25,12 @@ function create() {
         title: document.getElementById('name').value,
         url: document.getElementById('url').value,
         parentId: choice
-    }, () => window.close())
-
+    }, () => {
+        chrome.runtime.sendMessage('didhhgjdbdpeolobnbdpjndmhddjeeig',
+            {changedFolder: choice},
+            response => console.log(response));
+        window.close();
+    })
 }
 
 function initOptions(id) {
