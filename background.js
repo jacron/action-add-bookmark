@@ -1,4 +1,5 @@
 let nodesFound = null;
+let tabUrl = null;
 
 function setNodesfound(nodes) {
     const items = [];
@@ -10,7 +11,6 @@ function setNodesfound(nodes) {
     }
     nodesFound = items;
     for (const node of nodes) {
-        // console.log(node.parentId);
         chrome.bookmarks.get(node.parentId, found => {
             nodesFound.filter(nodeFound =>
                 nodeFound.id === node.id)[0]
@@ -19,16 +19,13 @@ function setNodesfound(nodes) {
     }
 }
 
-function checkExists(url) {
+function checkExists(url, cb) {
+    tabUrl = url;
     chrome.bookmarks.search({url}, nodes => {
-        // console.log('found nodes', nodes);
         if (nodes.length > 0) {
             chrome.browserAction.setBadgeText({
                 text: nodes.length.toString()
             });
-            // chrome.browserAction.setPopup({
-            //     popup: 'popup2.html'
-            // });
             setNodesfound(nodes);
         } else {
             chrome.browserAction.setBadgeText({
@@ -36,10 +33,11 @@ function checkExists(url) {
             });
             nodesFound = null;
         }
+        if (cb) {cb()}
     })
 }
 
-function chackActive(tabId) {
+function checkActive(tabId) {
     chrome.tabs.get(tabId, tab => checkExists(tab.url));
 }
 
@@ -47,11 +45,33 @@ chrome.tabs.onUpdated.addListener(
     (tabId, changeInfo, tab) => {
         checkExists(tab.url)
     });
+
 chrome.tabs.onActivated.addListener(activeInfo => {
-    chackActive(activeInfo.tabId);
+    checkActive(activeInfo.tabId);
 });
+
+/**
+ * listen to popup.js
+ * - request: existing
+ * - request: newExisting
+ */
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
-    if (req.request && req.request === 'existing') {
-        sendResponse({existing: nodesFound})
+    // console.log(req);
+    if (req.request) {
+        if (req.request === 'existing') {
+            sendResponse({existing: nodesFound})
+        }
+        else if (req.request === 'newExisting') {
+            checkExists(tabUrl, () =>
+                sendResponse({existing: nodesFound})  // too late
+            );
+            /** no new response, have to call me later */
+            sendResponse({existing: nodesFound}); // see you later
+        }
+        else {
+            sendResponse('invalid request:' + req.request);
+        }
+    } else {
+        sendResponse('no request received');
     }
 });

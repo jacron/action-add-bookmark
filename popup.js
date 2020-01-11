@@ -1,3 +1,7 @@
+const idSplash = 'didhhgjdbdpeolobnbdpjndmhddjeeig';
+const MSG_EXISTING = 'existing';
+const MSG_NEW_EXISTING = 'newExisting';
+
 const globals = {
     inputName: document.getElementById('name'),
     inputUrl: document.getElementById('url'),
@@ -26,23 +30,11 @@ function create() {
         url: document.getElementById('url').value,
         parentId: choice,
     }, () => {
-        chrome.runtime.sendMessage('didhhgjdbdpeolobnbdpjndmhddjeeig',
-            {changedFolder: choice},
+        /** send message to splash */
+        chrome.runtime.sendMessage(idSplash, {changedFolder: choice},
             response => console.log(response));
-        window.close();
-    })
-}
-
-function save() {
-    const choice = document.getElementById('select-folder').value;
-    chrome.bookmarks.update({
-        title: document.getElementById('name').value,
-        url: document.getElementById('url').value,
-        parentId: choice,
-    }, () => {
-        chrome.runtime.sendMessage('didhhgjdbdpeolobnbdpjndmhddjeeig',
-            {changedFolder: choice},
-            response => console.log(response));
+        /** send message to background.js */
+        askExisting(MSG_NEW_EXISTING);
         window.close();
     })
 }
@@ -59,15 +51,11 @@ function initOptions(id) {
 function initCmd() {
     const cmdButton = document.getElementById('cmd-add');
     const cmdCloser = document.getElementById('closer');
-    const cmdEdit = document.getElementById('cmd-edit');
     cmdButton.addEventListener('click', () => {
         create();
     });
     cmdCloser.addEventListener('click', () => {
         window.close();
-    });
-    cmdEdit.addEventListener('click', () => {
-        save();
     });
 }
 function choiceFromLocalStorage(deflt) {
@@ -126,39 +114,26 @@ function initTrans() {
 }
 
 function existingTrans(count) {
-    document.documentElement.setAttribute('lang',
-        chrome.i18n.getMessage('@@ui_locale'));
-    bindTranslations([
-        ['cmd-edit', 'cmdEdit'],
-        ['choice-edit-label', 'choiceEditLabel'],
-        ['choice-add-label', 'choiceAddLabel'],
-        ['prompt-existing', 'promptExisting'],
-        ['more', 'more'],
-    ]);
-    document.title = chrome.i18n.getMessage('windowTitle');
-    document.getElementById('trim-querystring').title =
-        chrome.i18n.getMessage('trimQuerystringTitle');
-    const header = document.getElementById('.header-existing');
+    const header = document.getElementById('header-existing');
     const text = chrome.i18n.getMessage('existingFound');
     header.innerText =  text.replace('@count', count);
 }
 
-function prepareForm(form) {
-    const cmdEdit = document.getElementById('cmd-edit');
-    const cmdAdd = document.getElementById('cmd-add');
+const delPrefix = 'del_';
 
-    form.addEventListener('change', () => {
-        if (form.choice.value === 'edit') {
-            cmdAdd.style.visibility = 'hidden';
-            cmdEdit.style.visibility = 'visible';
-        } else {
-            cmdEdit.style.visibility = 'hidden';
-            cmdAdd.style.visibility = 'visible';
-        }
-    });
-    form.choice.value= "add";
-    cmdEdit.style.visibility = 'hidden';
-
+function createExistingRow(bm) {
+    const row = document.createElement('div');
+    const cmdDelete = document.createElement('span');
+    cmdDelete.classList.add('cmd-delete');
+    const title = document.createElement('span');
+    cmdDelete.innerText = 'x';
+    cmdDelete.id = delPrefix + bm.id;
+    // cmdDelete.addEventListener('click', () => deleteBm(bm));
+    title.innerHtml = '<span class="del-row"></span><span class=""></span>';
+    title.innerText = bm.parentTitle;
+    row.appendChild(cmdDelete);
+    row.appendChild(title);
+    return row;
 }
 
 function showExisting(existing) {
@@ -167,33 +142,49 @@ function showExisting(existing) {
 
     existingContainer.style.visibility = 'visible';
     existingTrans(existing.length);
-    prepareForm(document['form-choice']);
 
-    if (existing.length > 0) {
-        for (const bm of existing) {
-            const row = document.createElement('div');
-            row.innerText = ` - ${bm.parentTitle}`;
-            existingList.appendChild(row);
-        }
+    existingList.innerHTML = '';
+    for (const bm of existing) {
+        existingList.appendChild(createExistingRow(bm));
     }
+}
+
+function deleteBm(id) {
+    chrome.bookmarks.remove(id, () => {
+        askExisting(MSG_NEW_EXISTING, response => {
+            askExisting(MSG_EXISTING, response => {
+                console.log(response);
+                if (response && response.existing) { showExisting(response.existing) }
+                else { hideExisting() }
+            });
+        });
+    });
+}
+
+function initListEvents() {
+    const existingList = document.getElementById('existing-list');
+
+    /** event delegation */
+    existingList.addEventListener('click', e => {
+        if (e.target.classList.value === 'cmd-delete') {
+            const id = e.target.id.substr(delPrefix.length);
+            deleteBm(id);
+        }
+    })
 }
 
 function hideExisting() {
     const existingContainer = document.getElementById('existing');
-    const cmdEdit = document.getElementById('cmd-edit');
 
-    existingContainer.style.marginBottom = -26 + 'px';
-    cmdEdit.style.visibility = 'hidden';
-    document['form-choice'].style.display = 'none'; /** prevent height */
+    // existingContainer.style.marginBottom = -26 + 'px';
     existingContainer.style.visibility = 'hidden';
 }
 
-function askExisting() {
-    chrome.runtime.sendMessage({request:'existing'},
+function askExisting(request, cb) {
+    chrome.runtime.sendMessage({request},
         response => {
-            if (response.existing) { showExisting(response.existing) }
-            else { hideExisting() }
-        })
+            if (cb) {cb(response)}
+        });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -203,11 +194,15 @@ document.addEventListener('DOMContentLoaded', function () {
         lastFocusedWindow: true
     }, function(tabs) {
         const tab = tabs[0];
-        askExisting();
+        askExisting(MSG_EXISTING, response => {
+                if (response.existing) { showExisting(response.existing) }
+                else { hideExisting() }
+            });
         initTrans();
         fillForm(tab);
         initOptions(choice);
         initCmd();
+        initListEvents();
         initQs(tab);
     });
 });
