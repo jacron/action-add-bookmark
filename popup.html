@@ -7,16 +7,18 @@
   <body>
   <div id="new-bookmark">
     <h3>
-      <img src="" id="favicon">
-      Bookmark toevoegen</h3>
+      <span id="dialog-header">Bookmark toevoegen</span>
+    </h3>
+<!--    <img src="" id="favicon">-->
+    <div id="existing"></div>
     <div>
-      <div class="label">Naam</div>
+      <div class="label" id="label-name">Naam</div>
       <input class="value" id="name" autofocus>
     </div>
     <div>
-      <div class="label">Url</div>
+      <div class="label" id="label-url">Url</div>
       <input class="value" id="url">
-      <span id="trim-querystring">?</span>
+<!--      <span id="trim-querystring" title="verwijder querystring">?</span>-->
     </div>
     <div class="controls">
       <select id="select-folder"></select>

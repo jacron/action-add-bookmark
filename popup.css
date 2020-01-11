@@ -22,3 +22,14 @@ body {
 .controls {
   margin-top: 16px;
 }
+#existing {
+  /*line-height: 1.2;*/
+  margin-bottom: 16px;
+}
+#favicon {
+  width: 30px;
+}
+#trim-querystring {
+  cursor: default;
+  padding: 6px;
+}

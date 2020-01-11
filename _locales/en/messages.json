@@ -1,0 +1,24 @@
+{
+  "addBookmark": {
+    "message": "Add bookmark",
+    "description": "Application Name"
+  },
+  "labelName": {
+    "message": "Name"
+  },
+  "labelUrl": {
+    "message": "Url"
+  },
+  "dialogHeader": {
+    "message": "Add Bookmark"
+  },
+  "cmdAdd": {
+    "message": "Save"
+  },
+  "existingFound": {
+    "message": "This bookmark already exists in these folders"
+  },
+  "trimQuerystringTitle": {
+    "message": "remove querystring"
+  }
+}
