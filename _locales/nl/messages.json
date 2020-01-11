@@ -13,12 +13,27 @@
     "message": "Bladwijzer toevoegen"
   },
   "cmdAdd": {
-    "message": "Opslaan"
+    "message": "Toevoegen"
   },
   "existingFound": {
-    "message": "Deze bladwijzer bestaat al in de volgende folders"
+    "message": "Deze bladwijzer bestaat al in @count folders"
   },
   "trimQuerystringTitle": {
     "message": "verwijder querystring"
+  },
+  "promptExisting": {
+    "message": "U kunt de bestaande bladwijzer wijzigen, of een nieuwe toevoegen."
+  },
+  "choiceEditLabel": {
+    "message": "Wijzigen"
+  },
+  "choiceAddLabel": {
+    "message": "Toevoegen"
+  },
+  "cmdEdit": {
+    "message": "Wijzigen"
+  },
+  "cmdAddNew": {
+    "message": "Toevoegen"
   }
 }

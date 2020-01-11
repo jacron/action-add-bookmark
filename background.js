@@ -10,7 +10,7 @@ function setNodesfound(nodes) {
     }
     nodesFound = items;
     for (const node of nodes) {
-        console.log(node.parentId);
+        // console.log(node.parentId);
         chrome.bookmarks.get(node.parentId, found => {
             nodesFound.filter(nodeFound =>
                 nodeFound.id === node.id)[0]
@@ -21,11 +21,14 @@ function setNodesfound(nodes) {
 
 function checkExists(url) {
     chrome.bookmarks.search({url}, nodes => {
-        console.log('found nodes', nodes);
+        // console.log('found nodes', nodes);
         if (nodes.length > 0) {
             chrome.browserAction.setBadgeText({
                 text: nodes.length.toString()
             });
+            // chrome.browserAction.setPopup({
+            //     popup: 'popup2.html'
+            // });
             setNodesfound(nodes);
         } else {
             chrome.browserAction.setBadgeText({

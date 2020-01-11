@@ -1,29 +1,52 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <title>Add bookmark (may be duplicate)</title>
     <link href="popup.css" rel="stylesheet" type="text/css">
   </head>
   <body>
   <div id="new-bookmark">
+    <div id="closer">X</div>
     <h3>
       <span id="dialog-header">Bookmark toevoegen</span>
     </h3>
 <!--    <img src="" id="favicon">-->
-    <div id="existing"></div>
-    <div>
-      <div class="label" id="label-name">Naam</div>
-      <input class="value" id="name" autofocus>
+    <div id="existing">
+      <div>
+        <span id="header-existing">bookmarks exits</span>
+        <span id="more">more...</span>
+      </div>
+      <div id="existing-list"></div>
+      <div id="prompt-existing"></div>
+      <form name="form-choice">
+        <input type="radio" name="choice" value="edit">
+        <span id="choice-edit-label"></span>
+        <input type="radio" name="choice" value="add">
+        <span id="choice-add-label"></span>
+      </form>
     </div>
-    <div>
-      <div class="label" id="label-url">Url</div>
-      <input class="value" id="url">
-<!--      <span id="trim-querystring" title="verwijder querystring">?</span>-->
-    </div>
-    <div class="controls">
-      <select id="select-folder"></select>
-      <button id="cmd-add">Toevoegen</button>
-    </div>
+
+    <form id="form-bookmark">
+      <div>
+        <div class="label" id="label-name">Naam</div>
+        <input class="value" id="name" autofocus>
+      </div>
+      <div>
+        <div class="label flex-row">
+          <div id="label-url">Url</div>
+          <div>
+            <button id="trim-querystring" title="verwijder querystring">?</button>
+          </div>
+        </div>
+        <input class="value" id="url">
+      </div>
+      <div class="controls">
+        <select id="select-folder"></select>
+        <button id="cmd-edit">Bewerken</button>
+        <button id="cmd-add">Toevoegen</button>
+      </div>
+    </form>
+
   </div>
     <script src="config.js"></script>
     <script src="select.js"></script>

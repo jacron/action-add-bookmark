@@ -13,12 +13,27 @@
     "message": "Add Bookmark"
   },
   "cmdAdd": {
-    "message": "Save"
+    "message": "Add"
   },
   "existingFound": {
-    "message": "This bookmark already exists in these folders"
+    "message": "This bookmark already exists in @count folders"
   },
   "trimQuerystringTitle": {
     "message": "remove querystring"
+  },
+  "promptExisting": {
+    "message": "You may change the existing bookmark, or add a new one."
+  },
+  "choiceEditLabel": {
+    "message": "Change"
+  },
+  "choiceAddLabel": {
+    "message": "Add"
+  },
+  "cmdEdit": {
+    "message": "Change"
+  },
+  "cmdAddNew": {
+    "message": "Add"
   }
 }
