@@ -65,7 +65,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
             checkExists(tabUrl, () =>
                 sendResponse({existing: nodesFound})  // too late
             );
-            /** no new response, have to call me later */
+            /** no new response, have to call me again to get the new existing */
             sendResponse({existing: nodesFound}); // see you later
         }
         else {

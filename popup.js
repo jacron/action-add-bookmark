@@ -23,6 +23,12 @@ function fillForm(tab) {
     // document.getElementById('favicon').src = tab.favIconUrl;
 }
 
+function tellBookmarksChange() {
+    const choice = document.getElementById('select-folder').value;
+    chrome.runtime.sendMessage(idSplash, {changedFolder: choice},
+        response => console.log(response));
+}
+
 function create() {
     const choice = document.getElementById('select-folder').value;
     chrome.bookmarks.create({
@@ -31,8 +37,7 @@ function create() {
         parentId: choice,
     }, () => {
         /** send message to splash */
-        chrome.runtime.sendMessage(idSplash, {changedFolder: choice},
-            response => console.log(response));
+        tellBookmarksChange();
         /** send message to background.js */
         askExisting(MSG_NEW_EXISTING);
         window.close();
@@ -151,6 +156,9 @@ function showExisting(existing) {
 
 function deleteBm(id) {
     chrome.bookmarks.remove(id, () => {
+        /** send message to splash */
+        tellBookmarksChange();
+
         askExisting(MSG_NEW_EXISTING, response => {
             askExisting(MSG_EXISTING, response => {
                 console.log(response);
