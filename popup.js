@@ -184,7 +184,7 @@ function initListEvents() {
 function hideExisting() {
     const existingContainer = document.getElementById('existing');
 
-    // existingContainer.style.marginBottom = -26 + 'px';
+    existingContainer.style.marginBottom = -26 + 'px';
     existingContainer.style.visibility = 'hidden';
 }
 

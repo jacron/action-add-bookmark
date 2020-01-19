@@ -10,6 +10,11 @@
   "background": {
     "scripts": ["background.js"]
   },
+  "icons": {
+    "16": "images/starpink16.png",
+    "48": "images/starpink48.png",
+    "128": "images/starpink128.png"
+  },
   "browser_action": {
     "default_icon": "images/star pink.png",
     "default_title": "Add bookmark",
