@@ -81,8 +81,10 @@ function initQs(tab) {
     if (~tab.url.indexOf('?')) {
         const qs = document.getElementById('trim-querystring');
         qs.style.visibility = 'visible';
-        qs.addEventListener('click', () => {
+        qs.addEventListener('click', e => {
             globals.inputUrl.value = trimQuerystring(globals.inputUrl.value);
+            e.preventDefault();
+            return false;
         });
     }
 }
@@ -98,23 +100,36 @@ function initTt(tab) {
         return null;
     }
 
-    const tt = document.getElementById('trim-title');
     const delim = getDelim(tab.title);
-    // console.log(delim);
     if (delim) {
-        tt.style.visibility = 'visible';
-        tt.addEventListener('click', e => {
-            const title = document.getElementById('name');
-            let parts = title.value.split(delim);
-            // console.log(parts);
+        const tt1 = document.getElementById('trim-title-1');
+        const tt2 = document.getElementById('trim-title-2');
+        const tt12 = document.getElementById('trim-title-1-2');
+        const title = document.getElementById('name');
+        tt1.style.visibility = 'visible';
+        tt2.style.visibility = 'visible';
+        tt12.style.visibility = 'visible';
+        tt1.addEventListener('click', e => {
+            let parts = tab.title.split(delim);
             title.value = parts[0];
             e.preventDefault();
             return false;
         });
+        tt2.addEventListener('click', e => {
+            let parts = tab.title.split(delim);
+            title.value = parts[1];
+            e.preventDefault();
+            return false;
+        });
+        tt12.addEventListener('click', e=> {
+            title.value = tab.title;
+            e.preventDefault();
+            return false;
+        })
     }
 }
 
-function bindTranslations(bindings) {
+function bindTranslations(bindings, field) {
     for (const binding of bindings) {
         const [id, name] = binding;
         const element = document.getElementById(id);
@@ -123,7 +138,7 @@ function bindTranslations(bindings) {
             if (!translation) {
                 console.error('translation not found:', name);
             } else {
-                element.innerText = translation;
+                element[field] = translation;
             }
         } else {
             console.error('id not found:', id);
@@ -139,12 +154,14 @@ function initTrans() {
         ['label-url', 'labelUrl'],
         ['dialog-header', 'dialogHeader'],
         ['cmd-add', 'cmdAdd'],
-    ]);
+    ], 'innerText');
     document.title = chrome.i18n.getMessage('windowTitle');
-    document.getElementById('trim-querystring').title =
-        chrome.i18n.getMessage('trimQuerystringTitle');
-    document.getElementById('trim-title').title =
-        chrome.i18n.getMessage('trimTitle')
+    bindTranslations([
+        ['trim-querystring', 'trimQuerystringTitle'],
+        ['trim-title-1', 'trimTitle1'],
+        ['trim-title-2', 'trimTitle2'],
+        ['trim-title-1-2', 'trimTitle12'],
+    ], 'title');
 }
 
 function existingTrans(count) {

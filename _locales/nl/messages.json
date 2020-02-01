@@ -21,8 +21,14 @@
   "trimQuerystringTitle": {
     "message": "verwijder querystring"
   },
-  "trimTitle": {
-    "message": "Kort de titel af"
+  "trimTitle1": {
+    "message": "titel neem eerste deel"
+  },
+  "trimTitle2": {
+    "message": "titel neem tweede deel"
+  },
+  "trimTitle12": {
+    "message": "herstel titel"
   },
   "promptExisting": {
     "message": "U kunt de bestaande bladwijzer wijzigen, of een nieuwe toevoegen."

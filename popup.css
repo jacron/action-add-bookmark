@@ -48,7 +48,8 @@ body {
   cursor: default;
   visibility: hidden;
 }
-#trim-title {
+#trim-title-1,
+#trim-title-2 {
   cursor: default;
   visibility: hidden;
 }
