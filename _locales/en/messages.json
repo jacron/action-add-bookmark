@@ -21,6 +21,9 @@
   "trimQuerystringTitle": {
     "message": "remove querystring"
   },
+  "trimTitle": {
+    "message": "Shorten title"
+  },
   "promptExisting": {
     "message": "You may change the existing bookmark, or add a new one."
   },

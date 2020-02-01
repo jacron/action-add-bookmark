@@ -83,7 +83,34 @@ function initQs(tab) {
         qs.style.visibility = 'visible';
         qs.addEventListener('click', () => {
             globals.inputUrl.value = trimQuerystring(globals.inputUrl.value);
-        })
+        });
+    }
+}
+
+function initTt(tab) {
+    function getDelim(s) {
+        const words = s.split(' ');
+        for (let word of words) {
+            if (word.length === 1) {
+                return ' ' + word + ' ';
+            }
+        }
+        return null;
+    }
+
+    const tt = document.getElementById('trim-title');
+    const delim = getDelim(tab.title);
+    // console.log(delim);
+    if (delim) {
+        tt.style.visibility = 'visible';
+        tt.addEventListener('click', e => {
+            const title = document.getElementById('name');
+            let parts = title.value.split(delim);
+            // console.log(parts);
+            title.value = parts[0];
+            e.preventDefault();
+            return false;
+        });
     }
 }
 
@@ -115,7 +142,9 @@ function initTrans() {
     ]);
     document.title = chrome.i18n.getMessage('windowTitle');
     document.getElementById('trim-querystring').title =
-        chrome.i18n.getMessage('trimQuerystringTitle')
+        chrome.i18n.getMessage('trimQuerystringTitle');
+    document.getElementById('trim-title').title =
+        chrome.i18n.getMessage('trimTitle')
 }
 
 function existingTrans(count) {
@@ -159,7 +188,7 @@ function deleteBm(id) {
         /** send message to splash */
         tellBookmarksChange();
 
-        askExisting(MSG_NEW_EXISTING, response => {
+        askExisting(MSG_NEW_EXISTING, () => {
             askExisting(MSG_EXISTING, response => {
                 console.log(response);
                 if (response && response.existing) { showExisting(response.existing) }
@@ -212,5 +241,6 @@ document.addEventListener('DOMContentLoaded', function () {
         initCmd();
         initListEvents();
         initQs(tab);
+        initTt(tab);
     });
 });

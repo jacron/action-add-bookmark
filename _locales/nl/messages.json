@@ -21,6 +21,9 @@
   "trimQuerystringTitle": {
     "message": "verwijder querystring"
   },
+  "trimTitle": {
+    "message": "Kort de titel af"
+  },
   "promptExisting": {
     "message": "U kunt de bestaande bladwijzer wijzigen, of een nieuwe toevoegen."
   },

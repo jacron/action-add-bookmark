@@ -48,6 +48,10 @@ body {
   cursor: default;
   visibility: hidden;
 }
+#trim-title {
+  cursor: default;
+  visibility: hidden;
+}
 #cmd-add {
   padding: 5px;
 }
