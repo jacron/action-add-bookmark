@@ -90,16 +90,6 @@ function initQs(tab) {
 }
 
 function initTt(tab) {
-    function getDelim(s) {
-        const words = s.split(' ');
-        for (let word of words) {
-            if (word.length === 1) {
-                return ' ' + word + ' ';
-            }
-        }
-        return null;
-    }
-
     const delim = getDelim(tab.title);
     if (delim) {
         const tt1 = document.getElementById('trim-title-1');

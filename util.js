@@ -1,12 +1,18 @@
-const config = {
-    Avax: 'http://localhost:3008/safari?url=',
-};
-
-function makeUrl(url) {
-    return config.Avax + url;
+function getDelim(s) {
+    const words = s.split(' ');
+    for (let word of words) {
+        if (word.length === 1 && !/[a-zA-Z0-9]/.test(word)) {
+            return ' ' + word + ' ';
+        }
+    }
+    return null;
 }
 
-function callUrl(url) {
-    fetch(url).then(result => console.info(result)).catch(err => console.error(err));
+function testGetDelim() {
+    const s = 'this 1 is a - extraordinary site - indeed';
+    const delim = getDelim(s);
+    console.log(delim);
+    console.log(s.split(delim))
 }
 
+testGetDelim();
