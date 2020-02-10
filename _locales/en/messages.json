@@ -9,6 +9,9 @@
   "labelUrl": {
     "message": "Url"
   },
+  "labelFolder": {
+    "message": "Folder"
+  },
   "dialogHeader": {
     "message": "Add Bookmark"
   },
@@ -22,16 +25,13 @@
     "message": "remove querystring"
   },
   "trimTitle1": {
-    "message": "title part 1"
+    "message": "take first part name"
   },
   "trimTitle2": {
-    "message": "title part 2"
+    "message": "take second part name"
   },
   "trimTitle12": {
-    "message": "restore title"
-  },
-  "promptExisting": {
-    "message": "You may change the existing bookmark, or add a new one."
+    "message": "restore name"
   },
   "choiceEditLabel": {
     "message": "Change"

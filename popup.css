@@ -9,6 +9,17 @@ body {
   line-height: 2.2;
   position: relative;
 }
+button {
+  background-color: #555555;
+  color: #eeffff;
+  border-radius: 5px;
+  padding: 4px 6px 6px;
+  font-size: 12px;
+  height: 26px;
+}
+button:hover {
+  background-color: rgba(100, 100, 200, .8);
+}
 .value {
   width: 100%;
   white-space: nowrap;
@@ -28,15 +39,8 @@ body {
   border: 1px solid #ccc;
   padding: 7px;
 }
-#prompt-existing {
-  line-height: 1.5;
-  margin: 12px 0;
-}
 #existing button {
   padding: 5px;
-}
-#favicon {
-  width: 30px;
 }
 .flex-row {
   display: flex;
@@ -49,12 +53,10 @@ body {
   visibility: hidden;
 }
 #trim-title-1,
-#trim-title-2 {
+#trim-title-2,
+#trim-title-1-2 {
   cursor: default;
   visibility: hidden;
-}
-#cmd-add {
-  padding: 5px;
 }
 #closer {
   cursor: default;
@@ -62,9 +64,7 @@ body {
   right: 10px;
   padding: 0 8px;
   border-radius: 12px;
-}
-#closer:hover {
-  background-color: rgba(100, 100, 200, .8);
+  border-color: transparent;
 }
 .cmd-delete {
   cursor: default;
@@ -73,4 +73,16 @@ body {
 }
 .cmd-delete:hover {
   background-color: rgba(100, 100, 200, .8);
+}
+.btn-default {
+  float: right;
+  filter: invert();
+  padding: 6px;
+  font-weight: bold;
+}
+.value-select {
+  display: block;
+}
+#tree {
+  visibility: hidden;
 }

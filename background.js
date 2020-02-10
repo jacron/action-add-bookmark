@@ -1,5 +1,10 @@
+// import config from './config.js';
+
 let nodesFound = null;
 let tabUrl = null;
+
+const MSG_EXISTING = 'existing';
+const MSG_NEW_EXISTING = 'newExisting';
 
 function setNodesfound(nodes) {
     const items = [];
@@ -58,10 +63,10 @@ chrome.tabs.onActivated.addListener(activeInfo => {
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     // console.log(req);
     if (req.request) {
-        if (req.request === 'existing') {
+        if (req.request === MSG_EXISTING) {
             sendResponse({existing: nodesFound})
         }
-        else if (req.request === 'newExisting') {
+        else if (req.request === MSG_NEW_EXISTING) {
             checkExists(tabUrl, () =>
                 sendResponse({existing: nodesFound})  // too late
             );

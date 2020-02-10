@@ -6,7 +6,7 @@
   </head>
   <body>
   <div id="new-bookmark">
-    <div id="closer">X</div>
+    <button id="closer">X</button>
     <h3>
       <span id="dialog-header">Bookmark toevoegen</span>
     </h3>
@@ -28,26 +28,40 @@
             <button id="trim-title-1-2" title="restore title">1-2</button>
           </div>
         </div>
-        <input class="value" id="name" autofocus>
+        <input class="value" id="name" autofocus tabindex="1" title="name">
       </div>
       <div>
         <div class="label flex-row">
           <div id="label-url">Url</div>
           <div>
-            <button id="trim-querystring" title="verwijder querystring">?</button>
+            <button id="trim-querystring" title="verwijder querystring"
+                    tabindex="3"
+            >?</button>
           </div>
         </div>
-        <input class="value" id="url">
+        <input class="value" id="url" tabindex="2" title="url">
+      </div>
+      <div>
+        <div class="label">
+          <div id="label-folder">Map</div>
+          <div class="value-select">
+            <select id="select-folder" tabindex="4" title="parent folder"></select>
+          </div>
+        </div>
       </div>
       <div class="controls">
-        <select id="select-folder"></select>
-        <button id="cmd-add">Toevoegen</button>
+        <button id="cmd-more" tabindex="6">Meer...</button>
+        <button id="cmd-add" class="btn-default" tabindex="5"
+        >Toevoegen</button>
       </div>
     </form>
+    <!-- dialog tree -->
+    <ul id="tree" role="tree"></ul>
 
   </div>
-    <script src="config.js"></script>
-    <script src="select.js"></script>
-    <script src="popup.js"></script>
+<!--    <script src="config.js"></script>-->
+<!--    <script src="select.js"></script>-->
+<!--    <script src="util.js"></script>-->
+    <script type="module" src="popup.js"></script>
   </body>
 </html>

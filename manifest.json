@@ -1,14 +1,17 @@
 {
   "name": "__MSG_addBookmark__",
-  "description": "Bookmark may be duplicate",
-  "version": "0.1",
+  "description": "Add a bookmark - may be a duplicate",
+  "author": "Jan H Croonen",
+  "version": "1.0",
   "permissions": [
     "bookmarks",
     "tabs",
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "background": {
-    "scripts": ["background.js"]
+    "page": "background.html",
+    "persistent": false
   },
   "icons": {
     "16": "images/starpink16.png",

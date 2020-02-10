@@ -9,6 +9,9 @@
   "labelUrl": {
     "message": "Url"
   },
+  "labelFolder": {
+    "message": "Map"
+  },
   "dialogHeader": {
     "message": "Bladwijzer toevoegen"
   },
@@ -22,16 +25,13 @@
     "message": "verwijder querystring"
   },
   "trimTitle1": {
-    "message": "titel neem eerste deel"
+    "message": "neem eerste deel naam"
   },
   "trimTitle2": {
-    "message": "titel neem tweede deel"
+    "message": "neem tweede deel naam"
   },
   "trimTitle12": {
-    "message": "herstel titel"
-  },
-  "promptExisting": {
-    "message": "U kunt de bestaande bladwijzer wijzigen, of een nieuwe toevoegen."
+    "message": "herstel naam"
   },
   "choiceEditLabel": {
     "message": "Wijzigen"
