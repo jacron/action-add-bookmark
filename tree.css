@@ -5,11 +5,6 @@ ul, #tree {
     line-height: 1.6;
 }
 
-#tree {
-    font-size: large;
-    padding: 12px 0 0 62px;
-}
-
 .caret {
     cursor: pointer;
     user-select: none; /* Prevent text selection */
@@ -58,4 +53,10 @@ li.selected li {
 #tree li.opener:focus > .name {
     outline: -webkit-focus-ring-color auto 5px;
     outline-offset: 3px;
+}
+#node-template {
+    visibility: hidden;
+}
+ul {
+    margin: 0;
 }

@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <title>bookmarks-tree</title>
     <link href="tree.css" rel="stylesheet" type="text/css">
+    <link href="popup.css" rel="stylesheet" type="text/css">
     <link href="shared.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div>
     <span id="current-folder-name"></span>
 </div>
-<div id="tree"></div>
+<button id="closer">X</button>
+<h3>
+    <span id="dialog-header">Bookmark toevoegen</span>
+</h3>
+<form id="form-bookmark">
+    <div id="tree"></div>
 
 <!--  template tree node -->
 <ul>
@@ -19,8 +25,14 @@
         <span class="name"></span>
     </li>
 </ul>
+<div class="controls">
+    <button id="cmd-cancel" tabindex="6">Annuleren</button>
+    <button id="cmd-add" class="btn-default" tabindex="5"
+    >Toevoegen</button>
+</div>
+</form>
 
-<script src="tree.js" type="module"></script>
+<script src="extended.js" type="module"></script>
 
 </body>
 </html>
