@@ -1,5 +1,7 @@
 import {Tree} from './lib/tree.js';
-import {getSelectValue} from "./lib/storage.js";
+import {getSelectValue, retrieveActiveTab} from "./lib/storage.js";
+import {bindTranslations} from "./lib/trans.js";
+import {createBookmark} from "./lib/bookmark.js";
 
 const Splash = {
     tree: null,
@@ -17,4 +19,42 @@ function createTree() {
     Splash.tree.init(getSelectValue());
 }
 
-createTree();
+function initTrans() {
+    document.documentElement.setAttribute('lang',
+        chrome.i18n.getMessage('@@ui_locale'));
+    bindTranslations('innerText', [
+        ['cmd-add', 'cmdAdd'],
+        ['cmd-cancel', 'cmdCancel'],
+    ]);
+}
+
+function initFields(tab) {
+    console.log(tab);
+    const inputName = document.getElementById('name');
+    const inputUrl = document.getElementById('url');
+    inputName.value = tab.title;
+    inputName.addEventListener('keyup', e => {
+        if (e.code === 'Enter') {
+            createBookmark();
+        }
+    });
+    inputUrl.value = tab.url;
+    inputUrl.addEventListener('keyup', e => {
+        if (e.code === 'Enter') {
+            createBookmark();
+        }
+    });
+}
+
+function initForm() {
+    retrieveActiveTab(tab => {
+        initFields(tab);
+    });
+}
+
+function init() {
+    createTree();
+    initTrans();
+    initForm();
+}
+init();

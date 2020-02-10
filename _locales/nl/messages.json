@@ -15,9 +15,6 @@
   "dialogHeader": {
     "message": "Bladwijzer toevoegen"
   },
-  "cmdAdd": {
-    "message": "Toevoegen"
-  },
   "existingFound": {
     "message": "Deze bladwijzer bestaat al in @count folders"
   },
@@ -38,6 +35,12 @@
   },
   "choiceAddLabel": {
     "message": "Toevoegen"
+  },
+  "cmdAdd": {
+    "message": "Toevoegen"
+  },
+  "cmdCancel": {
+    "message": "Annuleren"
   },
   "cmdEdit": {
     "message": "Wijzigen"

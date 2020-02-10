@@ -15,9 +15,6 @@
   "dialogHeader": {
     "message": "Add Bookmark"
   },
-  "cmdAdd": {
-    "message": "Add"
-  },
   "existingFound": {
     "message": "This bookmark already exists in @count folders"
   },
@@ -38,6 +35,12 @@
   },
   "choiceAddLabel": {
     "message": "Add"
+  },
+  "cmdAdd": {
+    "message": "Add"
+  },
+  "cmdCancel": {
+    "message": "Cancel"
   },
   "cmdEdit": {
     "message": "Change"

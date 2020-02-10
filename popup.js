@@ -1,4 +1,4 @@
-import {choiceFromLocalStorage} from './lib/storage.js';
+import {choiceFromLocalStorage, storeActiveTab} from './lib/storage.js';
 import {initTrans} from './lib/trans.js';
 import {initOptions} from "./lib/select.js";
 import {initExisting} from "./lib/existing.js";
@@ -9,6 +9,7 @@ import {fillForm, initCmd} from "./lib/form.js";
 // import {initTreeOptionsEvents} from "./lib/tree-options.js";
 
 function init(tab, choice) {
+    storeActiveTab(tab);
     initExisting();
     initTrans();
     fillForm(tab);

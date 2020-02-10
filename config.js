@@ -1,6 +1,7 @@
 export default {
     idSplash: 'didhhgjdbdpeolobnbdpjndmhddjeeig',
     STORAGE_TARGET_FOLDER: 'chrome.addbookmark.current.folder',
+    ACTIVE_TAB: 'activeTab',
     MSG_EXISTING: 'existing',
     MSG_NEW_EXISTING: 'newExisting',
     delPrefix: 'del_',
