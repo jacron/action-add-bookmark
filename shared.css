@@ -1,0 +1,65 @@
+#caption-show-text {
+    color: white;
+}
+img.icon {
+    width: 72px;
+    border-radius: 10px;
+}
+.image-container {
+    border-radius: 10px;
+    height: 72px;
+    width: 72px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+body {
+    background-color: #eee;
+    color: #444;
+}
+.invert {
+    filter: invert();
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #222;
+        color: #ccc;
+    }
+    #bm-list,
+    .sidebar {
+        background-color: #333;
+    }
+    #filter-name {
+        background-color: #111;
+        color: #eee;
+    }
+    #filter-name-icon,
+    #filter-name-clear,
+    .folder {
+        filter: invert();
+    }
+    .link {
+        color: #cfcfcf;
+    }
+    li.selected > span {
+        color: #9cf;
+    }
+    .container {
+        background-color: #333;
+    }
+    .caret::before {
+        color: #ccc;
+    }
+    ul, #tree {
+        list-style-image: url('/images/folder-outline16-white.png');
+    }
+    img.icon {
+        opacity: .8;
+    }
+    .dialog {
+        background-color: #444;
+    }
+    #tree li.tree-draggedover > .name {
+        border: 1px solid #dd4400;
+    }
+}

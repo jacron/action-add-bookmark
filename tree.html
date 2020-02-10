@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bookmarks-tree</title>
+    <link href="tree.css" rel="stylesheet" type="text/css">
+    <link href="shared.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div>
+    <span id="current-folder-name"></span>
+</div>
+<div id="tree"></div>
+
+<!--  template tree node -->
+<ul>
+    <li class="opener" id="node-template" draggable="true">
+        <span class="opener"></span>
+        <span class="name"></span>
+    </li>
+</ul>
+
+<script src="tree.js" type="module"></script>
+
+</body>
+</html>

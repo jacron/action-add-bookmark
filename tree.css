@@ -1,0 +1,61 @@
+ul, #tree {
+    list-style-type: none;
+    list-style-image: url('/images/folder-outline16.png');
+    padding-left: 24px;
+    line-height: 1.6;
+}
+
+#tree {
+    font-size: large;
+    padding: 12px 0 0 62px;
+}
+
+.caret {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+}
+
+.caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.caret-down::before {
+    transform: rotate(90deg);
+}
+
+.nested {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+li.selected > span {
+    /*background-color: rgba(230, 230, 250, .4);*/
+    color: #002d82;
+}
+
+li.selected li {
+    background-color: transparent;
+    /*background-color: #9999cc;*/
+}
+
+#tree li {
+    border: 1px solid transparent;
+}
+
+#tree li.tree-draggedover > .name {
+    border: 1px solid #002d82;
+}
+
+#tree li.opener:focus {
+    outline: transparent auto 1px;
+}
+#tree li.opener:focus > .name {
+    outline: -webkit-focus-ring-color auto 5px;
+    outline-offset: 3px;
+}
