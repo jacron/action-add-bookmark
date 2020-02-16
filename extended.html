@@ -8,51 +8,50 @@
     <link href="shared.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div>
-    <span id="current-folder-name"></span>
-</div>
-<button id="closer">X</button>
-<h3>
-    <span id="dialog-header">Bookmark toevoegen</span>
-</h3>
-<form id="form-bookmark">
-    <div>
-        <div class="label flex-row">
-            <div id="label-name">Naam</div>
-            <div>
-                <button id="trim-title-1" title="title take one">1</button>
-                <button id="trim-title-2" title="title take two">2</button>
-                <button id="trim-title-1-2" title="restore title">1-2</button>
+<div id="new-bookmark">
+    <button id="closer">X</button>
+    <h3>
+        <span id="dialog-header">Bookmark toevoegen</span>
+    </h3>
+    <form id="form-bookmark">
+        <div>
+            <div class="label flex-row">
+                <div id="label-name">Naam</div>
+                <div>
+                    <button id="trim-title-1" title="title take one">1</button>
+                    <button id="trim-title-2" title="title take two">2</button>
+                    <button id="trim-title-1-2" title="restore title">1-2</button>
+                </div>
             </div>
+            <input class="value" id="name" autofocus tabindex="1" title="name">
         </div>
-        <input class="value" id="name" autofocus tabindex="1" title="name">
-    </div>
-    <div>
-        <div class="label flex-row">
-            <div id="label-url">Url</div>
-            <div>
-                <button id="trim-querystring" title="verwijder querystring"
-                        tabindex="3"
-                >?</button>
+        <div>
+            <div class="label flex-row">
+                <div id="label-url">Url</div>
+                <div>
+                    <button id="trim-querystring" title="verwijder querystring"
+                            tabindex="3"
+                    >?</button>
+                </div>
             </div>
+            <input class="value" id="url" tabindex="2" title="url">
         </div>
-        <input class="value" id="url" tabindex="2" title="url">
-    </div>
-    <div id="tree"></div>
+        <div id="tree" tabindex="3"></div>
 
-<!--  template tree node -->
-<ul>
-    <li class="opener" id="node-template" draggable="true">
-        <span class="opener"></span>
-        <span class="name"></span>
-    </li>
-</ul>
-<div class="controls">
-    <button id="cmd-cancel" tabindex="6">Annuleren</button>
-    <button id="cmd-add" class="btn-default" tabindex="5"
-    >Toevoegen</button>
+        <!--  template tree node -->
+        <ul>
+            <li class="opener" id="node-template" draggable="true">
+                <span class="opener"></span>
+                <span class="name"></span>
+            </li>
+        </ul>
+        <div class="controls">
+            <button id="cmd-cancel" tabindex="6">Annuleren</button>
+            <button id="cmd-add" class="btn-default" tabindex="5"
+            >Toevoegen</button>
+        </div>
+    </form>
 </div>
-</form>
 
 <script src="extended.js" type="module"></script>
 

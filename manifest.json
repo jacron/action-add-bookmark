@@ -1,6 +1,6 @@
 {
   "name": "__MSG_addBookmark__",
-  "description": "Add a bookmark - may be a duplicate",
+  "description": "Add a bookmark - the bookmark may be a duplicate",
   "author": "Jan H Croonen",
   "version": "1.0",
   "permissions": [

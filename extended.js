@@ -29,7 +29,6 @@ function initTrans() {
 }
 
 function initFields(tab) {
-    console.log(tab);
     const inputName = document.getElementById('name');
     const inputUrl = document.getElementById('url');
     inputName.value = tab.title;

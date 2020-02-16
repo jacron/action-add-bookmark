@@ -38,7 +38,11 @@ li.selected li {
     background-color: transparent;
     /*background-color: #9999cc;*/
 }
-
+#tree {
+    margin-top: 30px;
+    height: 290px;
+    overflow-y: auto;
+}
 #tree li {
     border: 1px solid transparent;
 }
