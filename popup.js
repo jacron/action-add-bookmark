@@ -12,12 +12,14 @@ function init(tab, choice) {
     storeActiveTab(tab);
     initExisting();
     initTrans();
-    fillForm(tab);
+    if (tab) {
+        fillForm(tab);
+        initQueryString(tab);
+        initTrimTitle(tab);
+    }
     initOptions(choice);
     initCmd();
     initListEvents();
-    initQueryString(tab);
-    initTrimTitle(tab);
     // initTreeOptionsEvents();
 }
 
