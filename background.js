@@ -15,12 +15,14 @@ function setNodesfound(nodes) {
         })
     }
     nodesFound = items;
-    for (const node of nodes) {
-        chrome.bookmarks.get(node.parentId, found => {
-            nodesFound.filter(nodeFound =>
-                nodeFound.id === node.id)[0]
-                .parentTitle = found[0].title;
-        })
+    if (nodesFound) {
+        for (const node of nodes) {
+            chrome.bookmarks.get(node.parentId, found => {
+                nodesFound.filter(nodeFound =>
+                    nodeFound.id === node.id)[0]
+                    .parentTitle = found[0].title;
+            })
+        }
     }
 }
 
