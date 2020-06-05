@@ -15,7 +15,7 @@ function setNodesfound(nodes) {
         })
     }
     nodesFound = items;
-    if (nodesFound) {
+    if (nodesFound !== null) {
         for (const node of nodes) {
             chrome.bookmarks.get(node.parentId, found => {
                 nodesFound.filter(nodeFound =>
